@@ -24,30 +24,30 @@ const server = http
             '<li><a href="/enquetes/sushi-pizza">寿司・ピザ</a></li>' +
             '</ul></body></html>');
         } else if (req.url === '/enquetes/yaki-shabu') {
-            res.write(
-              pug.renderFile('./form.pug', {
-                path: req.url,
-                firstItem: '焼き肉',
-                secondItem: 'しゃぶしゃぶ'
-              })
-            );
-          } else if (req.url === '/enquetes/rice-bread') {
-            res.write(
-              pug.renderFile('./form.pug', {
-                path: req.url,
-                firstItem: 'ごはん',
-                secondItem: 'パン'
-              })
-            );
-          } else if (req.url === '/enquetes/sushi-pizza') {
-            res.write(pug.renderFile('./form.pug', {
+          res.write(
+            pug.renderFile('./form.pug', {
               path: req.url,
-              firstItem: '寿司',
-              secondItem: 'ピザ'
-            }));
-          }
-          res.end();
-          break;
+              firstItem: '焼き肉',
+              secondItem: 'しゃぶしゃぶ'
+            })
+          );
+        } else if (req.url === '/enquetes/rice-bread') {
+          res.write(
+            pug.renderFile('./form.pug', {
+              path: req.url,
+              firstItem: 'ごはん',
+              secondItem: 'パン'
+            })
+          );
+        } else if (req.url === '/enquetes/sushi-pizza') {
+          res.write(pug.renderFile('./form.pug', {
+            path: req.url,
+            firstItem: '寿司',
+            secondItem: 'ピザ'
+          }));
+        }
+        res.end();
+        break;
       case 'POST':
         let rawData = '';
         req
@@ -72,7 +72,7 @@ const server = http
   .on('clientError', e => {
     console.error(`[${new Date()}] Client Error`, e);
   });
-const port = 8000;
+const port = process.env.PORT || 8000;
 server.listen(port, () => {
   console.info(`[${new Date()}] Listening on ${port}`);
 });
